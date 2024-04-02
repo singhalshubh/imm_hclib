@@ -3,7 +3,7 @@
 ## Prerequisite
 To build IMM Actor runtime, please follow the instruction for Perlmutter.
 ```
-wget https://github.gatech.edu/FORZA/workflow4/blob/master/scripts/setup-perlmutter.sh
+wget https://anonymous.4open.science/r/imm_hclib-81BD/scripts/setup-perlmutter.sh
 source setup-perlmutter.sh
 ```
 
