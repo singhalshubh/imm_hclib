@@ -117,4 +117,3 @@ srun -n 256 -c 1 ./imm_hclib_1D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2
 srun -n 256 -c 1 ./imm_hclib_2D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers2D-citHepPh.txt
 ```
 You can see the execution prints of the program on your terminal screen. Influencer IDs are stored in two files, `influencers1D-citHepPh.txt` for IMM Actor and `influencers2D-citHepPh.txt` for IMM Actor 2D.
-
