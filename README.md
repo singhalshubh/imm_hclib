@@ -47,7 +47,7 @@ dumb-graph.cc normalizes your dataset from random vertice labels to ordered [1..
 # Build and Run workflow
 ## Build
 ```
-git clone <link-provided>
+Download from <link-provided> and rename folder to imm_hclib
 cd imm_hclib/src/perlmutter
 make
 ``` 
