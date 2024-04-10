@@ -23,11 +23,9 @@ source setup-perlmutter.sh
 
 ## Dataset 
 ### STEP 1: Downloading the dataset
-Showcasing example of downloading cit-HepPh graph from [SNAP].
+Showcasing example of downloading cit-HepPh graph from [SNAP]. We recommend using scratch space for dataset.
 
 ```
-export SCRATCH=<path-to-scratch>
-cd $SCRATCH
 wget http://snap.stanford.edu/data/cit-HepPh.txt.gz 
 gzip -df cit-HepPh.txt.gz
 ```
@@ -38,7 +36,7 @@ You should see cit-HepPh.txt file in your scratch space. Then,
 
 ```
 salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
-srun -n 1 ./<path-to-file>/dumb-graph.cc -d LT --normalize -o cit-HepPh-LT.txt.gz
+srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i /path-to-dataset/cit-HepPh.txt -d LT --normalize -o /path-to-dataset/cit-HepPh-LT.txt
 ``` 
 
 dumb-graph.cc normalizes your dataset from random vertice labels to ordered [1..N] vertex labels. LT model is used to generate weights based on IMM [[Marco'19]](https://ieeexplore.ieee.org/document/8890991) strategy same as [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769). Follow the instructions to run dump-graph.cc executable, available at [[ripples]](https://doi.org/10.5281/zenodo.4673587) in ``tools/``.
@@ -57,8 +55,8 @@ Make sure your terminal session has followed the pre-requisite, in case you run 
 
 ```
 salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
-srun -n 128 -c 1 ./imm_hclib_1D -f /path-to-dataset/ -d LT -k <> -e <> -o influencers1D.txt
-srun -n 128 -c 1 ./imm_hclib_2D -f /path-to-dataset/ -d LT -k <> -e <> -o influencers2D.txt
+srun -n 128 -c 1 ./imm_hclib_1D -f /path-to-dataset/cit-HepPh-LT.txt -d LT -k <> -e <> -o influencers1D.txt
+srun -n 128 -c 1 ./imm_hclib_2D -f /path-to-dataset/cit-HepPh-LT.txt -d LT -k <> -e <> -o influencers2D.txt
 ```
 extra options for running imm_hclib_1D and imm_hclib_2D
 - -u for undirected graph and, 
