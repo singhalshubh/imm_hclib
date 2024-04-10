@@ -84,17 +84,14 @@ void flush_messages(std::vector<matrix_elem> &pkt_vec, uint64_t &curr_value, mat
 
 uint64_t PERFORM_IMM(GRAPH *g, std::map<BFS_ITERATION_INDEX, std::vector<DST>*> *RRsets, 
     std::map<uint64_t, uint64_t> *_IMMvisited, std::set<uint64_t> *influencers, std::unordered_map<DST, std::unordered_map<SRC,uint64_t>*> *COVAR) {
-    /////
     uint64_t local_chunk_size = g->global2localcolidx->size();
     std::vector<uint64_t> *count = new std::vector<uint64_t>;
     count->resize(local_chunk_size, 0);
   
-  // make a true count matrix in block distributed manner 
     for(auto x: *(_IMMvisited)) {
       (*count)[g->global2localcolidx->find(x.first)->second] = x.second;
     }
-    /////start
-    // make the final COVAR matrix // Assumption that COVAR MATRIX was initialized as a ZERO matrx initially
+    
     matrixhandler* mh = new matrixhandler(COVAR, g->global2localcolidx);
     hclib::finish([=]() {
         mh->start();
@@ -102,7 +99,7 @@ uint64_t PERFORM_IMM(GRAPH *g, std::map<BFS_ITERATION_INDEX, std::vector<DST>*> 
         pkt_vec.reserve(BATCH_SIZE + 100); 
         uint64_t cutoff_value = BATCH_SIZE;
         uint64_t curr_value = 0;
-        for (auto &sett : (*RRsets)) {// std::vector<uint64_t> set 
+        for (auto &sett : (*RRsets)) { 
         for (int i = 0; i < sett.second->size(); i++) {
             uint64_t node_i = (*(sett.second))[i];
             for (int j = i+1; j < sett.second->size(); j++) {
@@ -120,15 +117,11 @@ uint64_t PERFORM_IMM(GRAPH *g, std::map<BFS_ITERATION_INDEX, std::vector<DST>*> 
     });
     shmem_barrier_all();
     delete mh;
-    ////start
     uint64_t k = g->cfg->k;
     uint64_t max_coverage = 0;
     for (int i = 0; i < k; i++) {
         uint64_t local_max_size = 0;
         uint64_t dest_vertex;
-        // for(auto itr: *IMMvisited) {
-        //     fprintf(stderr, "%d, %d\n", itr.first, itr.second);
-        // }
         for(uint64_t tracker = 0; tracker < count->size(); tracker++) {
             if(local_max_size < (*count)[tracker]) {
                 local_max_size = (*count)[tracker];
@@ -155,7 +148,6 @@ uint64_t PERFORM_IMM(GRAPH *g, std::map<BFS_ITERATION_INDEX, std::vector<DST>*> 
           (*count)[g.first] = (*count)[g.first] - g.second; 
         }
     }
-    ///start
     return max_coverage;
 }
 
@@ -163,7 +155,7 @@ void _defineMappings(GRAPH *g) {
     uint64_t idx = 0;
     for (uint64_t node = 0; node < g->total_num_nodes; node++) {
       if (pe(node) == MYTHREAD) {
-        g->global2localcolidx->insert(std::make_pair(node, idx)); // this can be made more efficient in the main code
+        g->global2localcolidx->insert(std::make_pair(node, idx));
         idx++;
       }
     }

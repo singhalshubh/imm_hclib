@@ -5,7 +5,6 @@ export CXX=oshc++
 export LOC=$PWD
 # bale
 if [ ! -d bale ]; then
-    #git clone https://github.com/singhalshubh/bale
     git clone https://github.com/jdevinney/bale.git
     cd bale/src/bale_classic/
     ./bootstrap.sh
@@ -15,7 +14,6 @@ fi
 
 if [ ! -d hclib ]; then
     git clone https://github.com/srirajpaul/hclib
-    #git clone https://github.com/singhalshubh/hclib
     cd hclib
     git fetch && git checkout bale3_actor
     ./install.sh

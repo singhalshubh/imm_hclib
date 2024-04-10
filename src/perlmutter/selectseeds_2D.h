@@ -93,8 +93,6 @@ uint64_t PERFORM_IMM(GRAPH *g, std::map<BFS_ITERATION_INDEX, std::vector<DST>*> 
     for(auto x: *(_IMMvisited)) {
       (*count)[g->global2localcolidx->find(x.first)->second] = x.second;
     }
-    /////start
-    // make the final COVAR matrix // Assumption that COVAR MATRIX was initialized as a ZERO matrx initially
     matrixhandler* mh = new matrixhandler(COVAR, g->global2localcolidx);
     hclib::finish([=]() {
         mh->start();
@@ -163,7 +161,7 @@ void _defineMappings(GRAPH *g) {
     uint64_t idx = 0;
     for (uint64_t node = 0; node < g->total_num_nodes; node++) {
       if (pe(node) == MYTHREAD) {
-        g->global2localcolidx->insert(std::make_pair(node, idx)); // this can be made more efficient in the main code
+        g->global2localcolidx->insert(std::make_pair(node, idx));
         idx++;
       }
     }

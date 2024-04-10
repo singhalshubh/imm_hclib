@@ -1,13 +1,3 @@
-/*
-This module implements the global index ranging from [0..num_nodes-1]
-This ensures that if we select any random value from [0..num_nodes-1], we would
-obtain the corresponding unique vertice, which is the primary aim of indexing vertice to
-be uniquely identified when pciked randomly. 
-Note: We chose unique numbering of vertices as desrired choice and not lexicographical
-order of vertices as requirement of application is only limited to: "pick a vertice uniquely at random",
-under IC/LT model of probability!
-Author: Shubhendra Pal Singhal (Georgia Institute of Technology)
-*/
 #ifdef PREFIX
 
 class reIndexSelector: public hclib::Selector<1, uint64_t> {
