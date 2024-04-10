@@ -110,7 +110,7 @@ optional flags, for supporting different kinds of datasets:
   
 ### Showcasing an example
 Once you `make` and generate two executables `imm_hclib_1D` and `imm_hclib_2D`, this section shows how to run IMM Actor for `cit-HepPh-LT.txt` dataset.
-## For 100 influencers, &epsilon; = 0.2 for 2 nodes of Perlmutter  
+#### For 100 influencers, &epsilon; = 0.2 for 2 nodes of Perlmutter  
 ```bash
 salloc --nodes 2 --qos regular --time 0:30:00 --constraint cpu
 srun -n 256 -c 1 ./imm_hclib_1D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers1D-citHepPh.txt
