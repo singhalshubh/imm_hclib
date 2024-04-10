@@ -39,7 +39,7 @@ salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
 srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i /path-to-dataset/cit-HepPh.txt -d LT --normalize -o /path-to-dataset/cit-HepPh-LT.txt
 ``` 
 
-dumb-graph.cc normalizes your dataset from random vertice labels to ordered [1..N] vertex labels. LT model is used to generate weights based on IMM [[Marco'19]](https://ieeexplore.ieee.org/document/8890991) strategy same as [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769). Follow the instructions to run dump-graph.cc executable, available at [[ripples]](https://doi.org/10.5281/zenodo.4673587) in ``tools/``.
+dumb-graph.cc normalizes your dataset from random vertice labels to ordered [1..N] vertex labels. LT model is used to generate weights based on IMM [[Marco'19]](https://ieeexplore.ieee.org/document/8890991) strategy same as [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769). Follow the instructions to build dump-graph.cc executable, available at [[ripples]](https://doi.org/10.5281/zenodo.4673587) in ``tools/``.
 
 
 # Build and Run workflow
