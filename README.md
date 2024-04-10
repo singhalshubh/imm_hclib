@@ -54,7 +54,7 @@ source setup-perlmutter.sh
 
 ## Dataset 
 ### General Instructions
-We recommend using scratch space for your dataset. It is not a mandatory requisite.
+We recommend using scratch space for your dataset, although it is not a mandatory requisite.
 ```bash
 salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
 srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i /<path-to-dataset>/<filename> -d LT --normalize -o /<path-to-dataset>/<filename>-LT.txt
