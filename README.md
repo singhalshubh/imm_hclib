@@ -61,5 +61,3 @@ srun -n 128 -c 1 ./imm_hclib_2D -f /path-to-dataset/cit-HepPh-LT.txt -d LT -k <>
 extra options for running imm_hclib_1D and imm_hclib_2D
 - -u for undirected graph and, 
 - -w for weighted graph.
-
-Use ```./imm_hclib_1D -h``` and ```./imm_hclib_2D -h```  for more help.
