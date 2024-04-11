@@ -60,7 +60,7 @@ salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
 srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i /<path-to-dataset>/<filename> -d LT --normalize -o /<path-to-dataset>/<filename>-LT.txt
 ``` 
 
-> dumb-graph.cc normalizes your dataset from random vertice labels to ordered [1..N] vertex labels. LT model is used to generate weights based on IMM [[Marco'19]] (https://ieeexplore.ieee.org/document/8890991) strategy same as [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769). Follow the instructions to build dump-graph.cc executable, available at [[ripples]](https://doi.org/10.5281/zenodo.4673587) in ``tools/``.
+> dumb-graph.cc normalizes your dataset from random vertice labels to ordered [1..N] vertex labels. LT model is used to adjust/generate weights based on IMM [[Marco'19]] (https://ieeexplore.ieee.org/document/8890991) strategy same as [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769). Follow the instructions to build dump-graph.cc executable, available at [[ripples]](https://doi.org/10.5281/zenodo.4673587) in ``tools/``.
 
 ### Showcasing an example
 #### STEP 1: Downloading the dataset - cit-HepPh graph 
@@ -116,3 +116,49 @@ srun -n 256 -c 1 ./imm_hclib_1D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2
 srun -n 256 -c 1 ./imm_hclib_2D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers2D-citHepPh.txt
 ```
 You can see the execution prints of the program on your terminal screen. Influencer IDs are stored in two files, `influencers1D-citHepPh.txt` for IMM Actor and `influencers2D-citHepPh.txt` for IMM Actor 2D.
+
+### Sample output
+```
+Application: IMM, Filename: /storage/scratch1/8/ssinghal74/imm-dataset/cit-HepPh-LT.txt, number of influencers: 100, epsilon = 0.130000, output file: inf-2D_1.txt, Model: LT, Is un-directed: 0, Is weighted: 1
+
+Total Number of Nodes in G: 34546
+Total Number of Edges in G: 421578
+STEP 1: Sampling
+Delta/PE: 229
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.009 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.043 seconds
+Fraction covered: 0.015250
+Delta/PE: 228
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.010 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.035 seconds
+Fraction covered: 0.012913
+Delta/PE: 457
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.010 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.037 seconds
+Fraction covered: 0.011254
+Delta/PE: 913
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.010 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.053 seconds
+Fraction covered: 0.009981
+Delta/PE: 1827
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.012 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.092 seconds
+Fraction covered: 0.009509
+Delta/PE: 3654
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.016 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.173 seconds
+Fraction covered: 0.009094
+Delta/PE: 7308
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.021 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.404 seconds
+Fraction covered: 0.008949
+
+ThetaFinal/PE: 7239
+final,STEP 2: Generate RR final
+Time taken to select generate RRR sets:    0.024 seconds
+final,STEP 3: Select Seeds
+Time taken to select seeds:    0.657 seconds
+Total Time:    1.606 seconds
+Total Time(generateRR):    0.112 seconds
+Total Time(selectseeds):    1.494 seconds
+```
