@@ -117,7 +117,8 @@ srun -n 256 -c 1 ./imm_hclib_2D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2
 ```
 You can see the execution prints of the program on your terminal screen. Influencer IDs are stored in two files, `influencers1D-citHepPh.txt` for IMM Actor and `influencers2D-citHepPh.txt` for IMM Actor 2D.
 
-### Sample output
+### Sample output for systemA
+Please do not compare analytical variable values printed, as they will differ greatly even with the slightest change in configuration or system.
 ```
 Application: IMM, Filename: /storage/scratch1/8/ssinghal74/imm-dataset/cit-HepPh-LT.txt, number of influencers: 100, epsilon = 0.130000, output file: inf-2D_1.txt, Model: LT, Is un-directed: 0, Is weighted: 1
 
