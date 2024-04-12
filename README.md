@@ -41,6 +41,12 @@ Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 ├── scripts/ (contains setup scripts for different HPC machines)
 │   ├── setup-perlmutter.h
 │   ├── setup-systemA.h
+├── tests/ (contains Ripples setup scripts and com-youtube processed dataset after dump-graph)
+│   ├── com-youtube.ungraph-LT.txt
+│   ├── ripples-modules.sh (Setup script for ripples)
+│   ├── ripples-setup.sh (Setup script for ripples)
+│   ├── ripples-MPIOP.sh (Sbatch script for ripples for MPI+OpenMP 4 threads)
+│   ├── ripples-MPI.sh (Sbatch script for ripples for MPI only)
 └── README.md
 ```
 
