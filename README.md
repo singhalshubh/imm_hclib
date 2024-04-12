@@ -77,11 +77,12 @@ srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i $SCRAT
 ``` 
 
 #### Sample output for synthetic4x
+```
 [2024-04-12 07:37:56.982] [console] [info] Loading Done!
 [2024-04-12 07:37:56.983] [console] [info] Number of Nodes : 844400
 [2024-04-12 07:37:56.983] [console] [info] Number of Edges : 4245213
 [2024-04-12 07:37:56.983] [console] [info] Loading took 5047ms
-
+```
 # Build and Run workflow
 ## Build
 ```bash
