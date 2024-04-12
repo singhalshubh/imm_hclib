@@ -76,6 +76,12 @@ salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
 srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i $SCRATCH/cit-HepPh.txt -d LT --normalize -o $SCRATCH/cit-HepPh-LT.txt
 ``` 
 
+#### Sample output for synthetic4x
+[2024-04-12 07:37:56.982] [console] [info] Loading Done!
+[2024-04-12 07:37:56.983] [console] [info] Number of Nodes : 844400
+[2024-04-12 07:37:56.983] [console] [info] Number of Edges : 4245213
+[2024-04-12 07:37:56.983] [console] [info] Loading took 5047ms
+
 # Build and Run workflow
 ## Build
 ```bash
