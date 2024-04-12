@@ -47,8 +47,9 @@ Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 # Prerequisite
 ## HClib run-time system
 Please follow the instructions for Perlmutter for installing and loading all the dependencies of IMM Actor (this repo).
+Download this repository from the link provided and rename the folder to imm_hclib
 ```bash
-wget https://anonymous.4open.science/r/imm_hclib-81BD/scripts/setup-perlmutter.sh
+cd imm_hclib/scripts/
 source setup-perlmutter.sh
 ```
 
@@ -77,7 +78,6 @@ srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i $SCRAT
 
 # Build and Run workflow
 ## Build
-Download this repository from the link provided and rename the folder to imm_hclib
 ```bash
 cd imm_hclib/src/perlmutter
 make
