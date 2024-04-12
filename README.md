@@ -118,9 +118,9 @@ optional flags, for supporting different kinds of datasets:
 ### Showcasing an example, for 100 influencers, &epsilon; = 0.2 for 2 nodes of Perlmutter
 Once you `make` and generate two executables `imm_hclib_1D` and `imm_hclib_2D`, this section shows how to run IMM Actor for `cit-HepPh-LT.txt` dataset.  
 ```bash
-salloc --nodes 2 --qos regular --time 0:30:00 --constraint cpu
-srun -n 256 -c 1 ./imm_hclib_1D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers1D-citHepPh.txt
-srun -n 256 -c 1 ./imm_hclib_2D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers2D-citHepPh.txt
+salloc -N 2 --qos regular --time 0:30:00 --constraint cpu
+srun -n 256 ./imm_hclib_1D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers1D-citHepPh.txt
+srun -n 256 ./imm_hclib_2D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers2D-citHepPh.txt
 ```
 You can see the execution prints of the program on your terminal screen. Influencer IDs are stored in two files, `influencers1D-citHepPh.txt` for IMM Actor and `influencers2D-citHepPh.txt` for IMM Actor 2D.
 
