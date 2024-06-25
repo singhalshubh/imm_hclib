@@ -8,7 +8,6 @@ extern "C" {
 #include <set>
 #include <map>
 #include <vector>
-#include <unordered_map>
 #include <queue>
 #include <fstream>
 #include <sys/stat.h>
@@ -30,15 +29,16 @@ extern "C" {
 #include <memory>
 #include <sstream>
 
+
 #ifdef __APPLE__
 #include <libkern/OSByteOrder.h>
 #include <machine/endian.h>
 #endif
-#define DEBUG
+//#define DEBUG
 #define PREFIX
 // #define TRACE
 // #define IMM_SELECTOR
-#define COVARIANCE 
+// #define COVARIANCE 
 
 #include "configuration.h"
 #include "utility.h"
@@ -76,12 +76,7 @@ int main (int argc, char* argv[]) {
         size_t thetaPrimePrevious = 0;
         #ifdef COVARIANCE
             std::map<uint64_t, uint64_t> *_IMMvisited = new std::map<uint64_t, uint64_t>;
-            //std::vector<std::vector<uint64_t>> COVAR(g->total_num_nodes, std::vector<uint64_t>(g->G->size(), 0));
-            std::unordered_map<DST, std::unordered_map<SRC,uint64_t>* > *COVAR = new std::unordered_map<DST, std::unordered_map<SRC,uint64_t>*>;  
-            for(int ik = 0; ik < g->total_num_nodes; ik++) {
-                std::unordered_map<SRC,uint64_t> * temp = new std::unordered_map<SRC,uint64_t>  ;
-                COVAR->insert(std::make_pair(ik, temp));
-            }
+            std::vector<std::vector<uint64_t>> COVAR(g->total_num_nodes, std::vector<uint64_t>(g->G->size(), 0));
             _defineMappings(g);
         #else
             std::map<SRC, std::set<TAG>*> *visited = new std::map<SRC, std::set<TAG>*>;
@@ -134,7 +129,7 @@ int main (int argc, char* argv[]) {
             #endif
             std::set<uint64_t> *influencers = new std::set<uint64_t>;
             #ifdef COVARIANCE
-                double rr_covered = PERFORM_IMM(g, RRsets, _IMMvisited, influencers, COVAR);
+                double rr_covered = PERFORM_IMM(g, RRsets, _IMMvisited, influencers, &COVAR);
             #else
                 double rr_covered = PERFORM_IMM(g, visited, influencers);
             #endif
@@ -200,7 +195,7 @@ int main (int argc, char* argv[]) {
         
         std::set<uint64_t> *influencers = new std::set<uint64_t>;
         #ifdef COVARIANCE
-            double rr_covered = PERFORM_IMM(g, RRsets, _IMMvisited, influencers, COVAR);
+            double rr_covered = PERFORM_IMM(g, RRsets, _IMMvisited, influencers, &COVAR);
         #else
             double rr_covered = PERFORM_IMM(g, visited, influencers);
         #endif
@@ -209,7 +204,6 @@ int main (int argc, char* argv[]) {
         #ifdef COVARIANCE
             delete _IMMvisited;
             delete RRsets;
-            delete COVAR;
         #endif
         #ifdef DEBUG
             gettimeofday(&rr1, NULL);
@@ -219,7 +213,7 @@ int main (int argc, char* argv[]) {
         #endif
         gettimeofday(&rr, NULL);
         timersub(&rr, &tt, &rr);
-        T0_fprintf(stderr, "Total Time: %8.3lf seconds\n", rr.tv_sec + (double) rr.tv_usec/(double)1000000);
+        T0_fprintf(stderr, "%lf", rr.tv_sec + (double) rr.tv_usec/(double)1000000);
         #ifdef DEBUG
             T0_fprintf(stderr, "Total Time(generateRR): %8.3lf seconds\n", generateRR_time.tv_sec + (double) generateRR_time.tv_usec/(double)1000000);
             T0_fprintf(stderr, "Total Time(selectseeds): %8.3lf seconds\n", selectSeeds_time.tv_sec + (double) selectSeeds_time.tv_usec/(double)1000000);
@@ -240,7 +234,7 @@ int main (int argc, char* argv[]) {
                 std::ofstream fp;
                 fp.open(cfg->outputfileName, std::ios::app);
                 for(auto inf: *influencers) {
-                    fp << inf+1 << "\n";
+                    fp << inf << "\n";
                 }
                 fp.close();
             }

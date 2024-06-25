@@ -200,12 +200,12 @@ void GRAPH::LOAD_GRAPH() {
 void GRAPH::STATS_OF_FILE() {
     #ifdef PREFIX
         uint64_t num_nodes = init_renumbering(_PREFIX_MAPPING, G->size());
-        T0_fprintf(stderr, "Total Number of Nodes in G: %llu\n", num_nodes);
+        //T0_fprintf(stderr, "Total Number of Nodes in G: %llu\n", num_nodes);
     #else
         std::map<uint64_t, uint64_t> *userToGlobalIdMap = new std::map<uint64_t, uint64_t>;
         uint64_t local_nodes = _G->size();
         uint64_t num_nodes = lgp_reduce_add_l(local_nodes);
-        T0_fprintf(stderr, "Total Number of Nodes in G: %llu\n", num_nodes);
+        //T0_fprintf(stderr, "Total Number of Nodes in G: %llu\n", num_nodes);
         _sortRenumbering(_G, total_num_nodes, G, globalToUserVerticeMap, userToGlobalIdMap);
         delete _G;
         delete userToGlobalIdMap;
@@ -221,7 +221,7 @@ void GRAPH::STATS_OF_FILE() {
     }
     uint64_t num_edges = 0;
     num_edges = lgp_reduce_add_l(local_edges);
-    T0_fprintf(stderr, "Total Number of Edges in G: %llu\n", num_edges);
+    //T0_fprintf(stderr, "Total Number of Edges in G: %llu\n", num_edges);
 }
     
 void GRAPH::generateWeightsLC() {

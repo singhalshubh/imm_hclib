@@ -37,6 +37,8 @@ class CONFIGURATION {
                     default:  break;
                 }
             }
-            T0_fprintf(stderr, "Application: IMM, Filename: %s, number of influencers: %ld, epsilon = %f, output file: %s, Model: %s, Is un-directed: %d, Is weighted: %d\n\n", fileName, k, epsilon, outputfileName, diffusion_model, undirected, weighted);
+            #ifdef DEBUG
+                T0_fprintf(stderr, "Application: IMM, Filename: %s, number of influencers: %ld, epsilon = %f, output file: %s, Model: %s, Is un-directed: %d, Is weighted: %d\n\n", fileName, k, epsilon, outputfileName, diffusion_model, undirected, weighted);
+            #endif
         }
 };
