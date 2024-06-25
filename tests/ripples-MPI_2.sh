@@ -4,6 +4,7 @@
 #SBATCH -N32
 #SBATCH -c24
 #SBATCH -t90
+#SBATCH -mem-per-cpu=12gb
 #SBATCH -qinferno        
 #SBATCH -ojob.out
 

@@ -16,37 +16,30 @@ Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 # Directory Structure
 ```tree
 ├── src/ (implementation of IMM Actor Algorithms) 
-│   │── perlmutter/
-│   │   ├── Makefile
-│   │   ├── configuration.h
-│   │   ├── generateRR.h
-│   │   ├── graph.h
-│   │   ├── imm_hclib_1D.cpp
-│   │   ├── imm_hclib_2D.cpp
-│   │   ├── renumbering.h
-│   │   ├── selectseeds.h
-│   │   ├── selectseeds_2D.h
-│   │   ├── utility.h
-│   ├── systemA/
-│   │   ├── Makefile
-│   │   ├── configuration.h
-│   │   ├── generateRR.h
-│   │   ├── graph.h
-│   │   ├── imm_hclib_1D.cpp
-│   │   ├── imm_hclib_2D.cpp
-│   │   ├── renumbering.h
-│   │   ├── selectseeds.h
-│   │   ├── selectseeds_2D.h
-│   │   ├── utility.h
+│   ├── Makefile
+│   ├── configuration.h
+│   ├── generateRR.h
+│   ├── graph.h
+│   ├── imm_hclib_1D.cpp
+│   ├── imm_hclib_2D.cpp
+│   ├── renumbering.h
+│   ├── selectseeds.h
+│   ├── selectseeds_2D.h
+│   ├── utility.h
 ├── scripts/ (contains setup scripts for different HPC machines)
-│   ├── setup-perlmutter.h
-│   ├── setup-systemA.h
-├── tests/ (contains Ripples setup scripts and com-youtube processed dataset after dump-graph)
-│   ├── com-youtube.ungraph-LT.txt
-│   ├── ripples-modules.sh (Setup script for ripples)
-│   ├── ripples-setup.sh (Setup script for ripples)
-│   ├── ripples-MPIOP.sh (Sbatch script for ripples for MPI+OpenMP 4 threads)
-│   ├── ripples-MPI.sh (Sbatch script for ripples for MPI only)
+│   ├── AE.sh (contains build of Ripples and Actor with sbatch scripts for Figure 5,6 of SC 24 paper).
+│   ├── setup.sh (Actor IMM setup)
+│   ├── ripples-setup.sh (Ripples setup)
+│   ├── ripples-conan.sh (Ripples config)
+│   ├── plot.sh (To reproduce Figure 5,6 from PACE outputs)
+├── tests/ (contains SLURM scripts for SC submission)
+│   ├── actor_01.sh
+│   ├── actor_02.sh
+│   ├── interpret.py 
+│   ├── ripples-MPI_1.sh
+│   ├── ripples-MPI_2.sh
+│   ├── ripples-MPIOP_1.sh
+│   └── ripples-MPIOP_2.sh
 └── README.md
 ```
 
@@ -56,7 +49,7 @@ Please follow the instructions for Perlmutter for installing and loading all the
 Download this repository from the link provided and rename the folder to imm_hclib
 ```bash
 cd imm_hclib/scripts/
-source setup-perlmutter.sh
+source setup.sh
 ```
 
 ## Dataset 

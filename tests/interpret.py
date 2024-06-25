@@ -7,7 +7,7 @@ import sys
 def main():
     pes = []
     pe = int(sys.argv[2])
-    while pe <= 16:
+    while pe <= 32:
         pes += [pe]
         pe = pe*2
 
