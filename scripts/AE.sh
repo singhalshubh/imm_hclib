@@ -12,8 +12,8 @@ echo -e 'Ready to run IMM-Actor Algorithms'
 cd $LOC
 
 ###### Ripples ####
-source ripples-conan.sh
-source ripples-setup.sh
+source imm_hclib/scripts/ripples-conan.sh
+source imm_hclib/scripts/ripples-setup.sh
 ############################
 cd $LOC
 
