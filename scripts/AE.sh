@@ -12,31 +12,8 @@ echo -e 'Ready to run IMM-Actor Algorithms'
 cd $LOC
 
 ###### Ripples ####
-echo -e 'Running setup script for `ripples`'
-source imm_hclib/scripts/conan.sh
-module load gcc
-module load python
-module load cmake
-module load openmpi
-
-pip3 install --user "conan==1.59"
-
-if [ ! -f ~/.conan/settings.yml ]; then
-    conan config init
-fi
-conan profile new default --detect &> /dev/null
-conan profile update settings.compiler.libcxx=libstdc++11 default
-conan profile update settings.compiler.version=12 default
-
-if [ ! -d $HOME/ripples ]; then
-    git clone https://github.com/pnnl/ripples.git $HOME/ripples
-fi
-
-cd $HOME/ripples
-conan create conan/trng
-conan install --install-folder build . --build 
-conan install . --build missing
-conan build .
+source ripples-conan.sh
+source ripples-setup.sh
 ############################
 cd $LOC
 
