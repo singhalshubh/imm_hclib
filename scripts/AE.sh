@@ -1,5 +1,5 @@
 export LOC=$PWD
-RED='\033[0;31m'
+export RED='\033[0;31m'
 ###### Actor-IMM ####
 echo -e '${RED}Cloning IMM-Actor Algorithms'
 git clone https://github.com/singhalshubh/imm_hclib
