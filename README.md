@@ -1,4 +1,6 @@
 # Influence Maximization (IM) Problem
+This repository consists of Influence Maximization Kernels for Asynchronous Distributed Run-Time.
+
 Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 
 ## References
@@ -12,6 +14,15 @@ Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 [[ripples]](https://doi.org/10.5281/zenodo.4673587) Marco Minutoli. (2021). pnnl/ripples: (v2.1). Zenodo. https://doi.org/10.5281/zenodo.4673587.
 
 [[SNAP]](http://snap.stanford.edu/data) Jure Leskovec and Andrej Krevl. (2014, June). SNAP Datasets: Stanford Large Network Dataset Collection. http://snap.stanford.edu/data
+
+[[HClib]] (https://hclib-actor.com) Sri Raj Paul, Akihiro Hayashi, Kun Chen, Youssef Elmougy, Vivek Sarkar,
+A Fine-grained Asynchronous Bulk Synchronous parallelism model for PGAS applications,
+Journal of Computational Science,
+Volume 69,
+2023,
+102014,
+ISSN 1877-7503,
+https://doi.org/10.1016/j.jocs.2023.102014.
 
 # Directory Structure
 ```tree
@@ -86,7 +97,7 @@ srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i $SCRAT
 # Build and Run workflow
 ## Build
 ```bash
-cd imm_hclib/src/perlmutter
+cd imm_hclib/src/
 make
 ```
 You will see two executables named, `imm_hclib_1D` and `imm_hclib_2D`.
