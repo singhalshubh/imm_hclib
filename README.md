@@ -15,7 +15,7 @@ Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 
 [[SNAP]](http://snap.stanford.edu/data) Jure Leskovec and Andrej Krevl. (2014, June). SNAP Datasets: Stanford Large Network Dataset Collection. http://snap.stanford.edu/data
 
-[[HClib]] (https://hclib-actor.com) Sri Raj Paul, Akihiro Hayashi, Kun Chen, Youssef Elmougy, Vivek Sarkar,
+[[HClib]](https://hclib-actor.com) Sri Raj Paul, Akihiro Hayashi, Kun Chen, Youssef Elmougy, Vivek Sarkar,
 A Fine-grained Asynchronous Bulk Synchronous parallelism model for PGAS applications,
 Journal of Computational Science,
 Volume 69,
