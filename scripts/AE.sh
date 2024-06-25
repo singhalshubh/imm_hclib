@@ -34,7 +34,5 @@ sbatch ripples-MPIOP_1.sh
 sbatch ripples-MPIOP_2.sh
 sbatch actor_01.sh
 sbatch actor_02.sh
+sbatch ripples-MPI_OOM.sh
 ############################
-
-##########################
-python -m pip install -U matplotlib

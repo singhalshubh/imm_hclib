@@ -14,22 +14,26 @@ cd $SLURM_SUBMIT_DIR
 
 a_datafiles=(soc-pokec-relationships soc-LiveJournal1)
 b_datafiles=(com-orkut.ungraph)
-pe=(8 16 32)
+pes=(8 16 32)
 
 export DATASET_PATH=~/scratch/imm-dataset
 
+if [ ! -d bin ]; then
+    mkdir bin
+fi
+
 for df in ${a_datafiles[@]}
 do
-    for pe in ${pe[@]}
+    for pe in ${pes[@]}
     do
-        srun -n $pe -c 24 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -p -k 100 -d LT -e 0.13 --parallel -o inf-MPIOP-$df-$pe.json
+        srun -n $pe -c 24 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -p -k 100 -d LT -e 0.13 --parallel -o $PWD/bin/inf-MPIOP-$df-$pe.json
     done
 done
 
 for df in ${b_datafiles[@]}
 do
-    for pe in ${pe[@]}
+    for pe in ${pes[@]}
     do
-        srun -n $pe -c 24 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -u -p -k 100 -d LT -e 0.13 --parallel -o inf-MPIOP-$df-$pe.json
+        srun -n $pe -c 24 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -u -p -k 100 -d LT -e 0.13 --parallel -o $PWD/bin/inf-MPIOP-$df-$pe.json
     done
 done

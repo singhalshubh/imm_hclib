@@ -14,22 +14,26 @@ cd $SLURM_SUBMIT_DIR
 
 a_datafiles=(cit-HepPh soc-Epinions1)
 b_datafiles=(com-dblp.ungraph com-youtube.ungraph)
-pe=(2 4 8 16 32)
+pes=(2 4 8 16 32)
 
 export DATASET_PATH=~/scratch/imm-dataset
 
+if [ ! -d bin ]; then
+    mkdir bin
+fi
+
 for df in ${a_datafiles[@]}
 do
-    for pe in ${pe[@]}
+    for pe in ${pes[@]}
     do
-        srun -n $(($pe*24)) -c 1 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -p -k 100 -d LT -e 0.13 --parallel -o inf-MPI-$df-$pe.json
+        srun -n $(($pe*24)) -c 1 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -p -k 100 -d LT -e 0.13 --parallel -o $PWD/bin/inf-MPI-$df-$pe.json
     done
 done
 
 for df in ${b_datafiles[@]}
 do
-    for pe in ${pe[@]}
+    for pe in ${pes[@]}
     do
-        srun -n $(($pe*24)) -c 1 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -u -p -k 100 -d LT -e 0.13 --parallel -o inf-MPI-$df-$pe.json
+        srun -n $(($pe*24)) -c 1 --cpu-bind none $HOME/ripples/build/Release/tools/mpi-imm -i $DATASET_PATH/$df-LT.txt -w -u -p -k 100 -d LT -e 0.13 --parallel -o $PWD/bin/inf-MPI-$df-$pe.json
     done
 done
