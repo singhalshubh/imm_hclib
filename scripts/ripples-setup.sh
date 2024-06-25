@@ -1,4 +1,4 @@
-
+#!/bin/bash
 echo 'Running setup script for `ripples`'
 module load gcc
 module load python

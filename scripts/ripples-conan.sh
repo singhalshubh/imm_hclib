@@ -25,6 +25,5 @@ for i in $(ls conan/); do
     if [ -d $HOME/.conan/data/$i ]; then
         rm -rf $HOME/.conan/data/$i
     fi
-
     conan create conan/$i user/stable
 done
