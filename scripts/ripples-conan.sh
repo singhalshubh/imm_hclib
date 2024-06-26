@@ -5,7 +5,7 @@ echo 'Running the first time setup script'
 module load gcc/12.1.0-qgxpzk
 module load python
 module load cmake
-module load openmpi/4.1.4
+module load mvapich2/2.3.7-733lcv
 module load pytorch
 
 export PATH=$PATH:$HOME/.local/bin
