@@ -1,4 +1,4 @@
-#!/bin/bash
+
 echo 'Running setup script for `ripples`'
 module load gcc
 module load python
@@ -18,9 +18,9 @@ export agile_WF=$PWD
 if [ ! -d $HOME/ripples ]; then
     git clone https://github.com/pnnl/ripples.git $HOME/ripples
 fi
-
 cd $HOME/ripples
-#conan create conan/waf-generator user/stable
+
+conan create conan/waf-generator user/stable
 conan create conan/trng
 conan install --install-folder build . --build 
 conan install . --build missing

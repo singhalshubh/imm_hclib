@@ -8,4 +8,3 @@ module load cmake
 
 export PATH=$PATH:$HOME/.local/bin
 eval "$__conda_setup"
-unset __conda_setup
