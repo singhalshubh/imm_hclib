@@ -3,7 +3,7 @@
 #SBATCH -A gts-vsarkar9-coda20
 #SBATCH -N32
 #SBATCH --ntasks-per-node=24
-#SBATCH -t90
+#SBATCH -t60
 #SBATCH -qinferno        
 #SBATCH -ojob.out
 
