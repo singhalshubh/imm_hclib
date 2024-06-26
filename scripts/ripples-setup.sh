@@ -22,7 +22,7 @@ if [ ! -d $HOME/ripples ]; then
 fi
 
 cd $HOME/ripples
-conan create conan/waf-generator user/stable
+#conan create conan/waf-generator user/stable
 conan create conan/trng
 conan install --install-folder build . --build 
 conan install . --build missing
