@@ -1,7 +1,6 @@
 #!/bin/bash
 
-module load cmake
-module load gcc python/3.9 openmpi/4.1.4
+module load gcc python/3.9 openmpi/4.1.4 cmake
 module load anaconda3
 
 export PATH=$PATH:$HOME/.local/bin
