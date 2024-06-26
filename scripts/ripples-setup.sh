@@ -1,6 +1,6 @@
 
 echo 'Running setup script for `ripples`'
-module load gcc/12.1.0-qgxpzk
+module load gcc
 module load python
 module load cmake
 module load openmpi
