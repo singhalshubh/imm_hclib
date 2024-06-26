@@ -22,8 +22,6 @@ if [ ! -d $HOME/ripples ]; then
 fi
 
 cd $HOME/ripples
-git checkout tags/v2.1
-
 conan create conan/waf-generator user/stable
 conan create conan/trng
 conan install --install-folder build . --build 
