@@ -1,10 +1,6 @@
 
 echo 'Running setup script for `ripples`'
-module load gcc
-module load python
-module load cmake
-module load openmpi
-
+module load gcc python openmpi/4.1.4 cmake
 pip3 install --user "conan==1.59"
 
 if [ ! -f ~/.conan/settings.yml ]; then
