@@ -29,7 +29,10 @@ export DATASET_PATH=$PWD
 echo -e 'Running jobs'
 cd $LOC/imm_hclib/tests
 sbatch ripples-MPI_1.sh
+sbatch ripples-MPI_2.sh
 sbatch ripples-MPIOP_1.sh
+sbatch ripples-MPIOP_2.sh
 sbatch actor_01.sh
+sbatch actor_02.sh
 sbatch ripples-MPI_OOM.sh
 ############################

@@ -38,7 +38,8 @@ https://doi.org/10.1016/j.jocs.2023.102014.
 │   ├── selectseeds_2D.h
 │   ├── utility.h
 ├── scripts/ (contains setup scripts for different HPC machines)
-│   ├── AE.sh (contains build of Ripples and Actor with sbatch scripts for Figure 5,6 of SC 24 paper).
+│   ├── AE_optional.sh (Optional for AE: contains reproduction of Figure 5,6 of SC 24 paper)
+│   ├── AE.sh (contains build of Ripples and Actor with sbatch scripts for Figure 5 of SC 24 paper).
 │   ├── setup.sh (Actor IMM setup)
 │   ├── ripples-setup.sh (Ripples setup)
 │   ├── ripples-conan.sh (Ripples config)
@@ -51,7 +52,8 @@ https://doi.org/10.1016/j.jocs.2023.102014.
 │   ├── ripples-MPIOP_1.sh
 │   └── ripples-MPIOP_2.sh
 │   └── ripples-MPI_OOM.sh
-│   ├── plot.sh (To reproduce Figure 5,6 from PACE outputs)
+│   ├── plot_optional.sh (Optional for AE: To reproduce Figure 5,6 from PACE outputs)
+│   ├── plot.sh (To reproduce Figure 5 from PACE outputs)
 └── README.md
 ```
 
