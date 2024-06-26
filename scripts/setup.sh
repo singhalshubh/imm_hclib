@@ -37,5 +37,5 @@ fi
 export BALE_INSTALL=$PWD/bale/src/bale_classic/build_oshmem
 export HCLIB_ROOT=$PWD/hclib/hclib-install
 export TRNG_ROOT=$PWD/trng4
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BALE_INSTALL/lib:$HCLIB_ROOT/lib:$HCLIB_ROOT/../modules/bale_actor/lib:$TRNG_ROOT/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BALE_INSTALL/lib:$HCLIB_ROOT/lib:$HCLIB_ROOT/../modules/bale_actor/lib:$TRNG_ROOT/lib64
 export HCLIB_WORKERS=1
