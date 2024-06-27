@@ -15,4 +15,4 @@ python3 interpret.py com-youtube.ungraph 2
 python interpret.py soc-pokec-relationships 8
 python interpret.py soc-LiveJournal1 8
 python interpret.py com-orkut.ungraph 8
-rm -rf bin/ job.out
+#rm -rf bin/ job.out
