@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=ripples-MPIOP_2
-#SBATCH -A gts-vsarkar9-coda20
+#SBATCH -A gts-vsarkar9-forza
 #SBATCH -N32
 #SBATCH -c24
 #SBATCH -t180

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=actor-1
-#SBATCH -A gts-vsarkar9-coda20
+#SBATCH -A gts-vsarkar9-forza
 #SBATCH -N32
 #SBATCH --ntasks-per-node=24
 #SBATCH -t60
