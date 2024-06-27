@@ -11,7 +11,7 @@ Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 
 [[Marco'19]](https://ieeexplore.ieee.org/document/8890991) M. Minutoli, M. Halappanavar, A. Kalyanaraman, A. Sathanur, R. Mcclure and J. McDermott (2019). Fast and Scalable Implementations of Influence Maximization Algorithms. 2019 IEEE International Conference on Cluster Computing (CLUSTER). pp. 1-12. doi: 10.1109/CLUSTER.2019.8890991.
 
-[[ripples]](https://doi.org/10.5281/zenodo.3942705) Marco Minutoli. (2021). pnnl/ripples: (v2.2). Zenodo. https://doi.org/10.5281/zenodo.4673587.
+[[ripples]](https://doi.org/10.5281/zenodo.3942705) Marco Minutoli. (2021). pnnl/ripples: (v2.2). Zenodo. https://doi.org/10.5281/zenodo.3942705.
 
 [[SNAP]](http://snap.stanford.edu/data) Jure Leskovec and Andrej Krevl. (2014, June). SNAP Datasets: Stanford Large Network Dataset Collection. http://snap.stanford.edu/data
 
