@@ -4,7 +4,6 @@ echo -e 'Cloning IMM-Actor Algorithms'
 git clone https://github.com/singhalshubh/imm_hclib
 echo -e 'Building IMM-Actor Algorithms'
 source imm_hclib/scripts/setup.sh
-source imm_hclib/scripts/setup.sh
 cd imm_hclib/src/
 export HClib_WF=$PWD
 make

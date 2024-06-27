@@ -18,6 +18,7 @@ if [ ! -d hclib ]; then
     cd hclib
     git fetch && git checkout bale3_actor
     ./install.sh
+    source hclib-install/bin/hclib_setup_env.sh
     cd modules/bale_actor && make
     cd benchmarks
     unzip ../inc/boost.zip -d ../inc/
