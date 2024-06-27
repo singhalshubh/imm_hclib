@@ -28,8 +28,11 @@ export DATASET_PATH=$PWD
 ##### Run scripts for generating experimental numbers ######
 echo -e 'Running jobs'
 cd $LOC/imm_hclib/tests
-sbatch ripples-MPI_1.sh
-sbatch ripples-MPIOP_1.sh
-sbatch actor_01.sh
+sbatch ripples-MPI_1a.sh
+sbatch ripples-MPI_1b.sh
+sbatch ripples-MPIOP_1a.sh
+sbatch ripples-MPIOP_1b.sh
+sbatch actor_01a.sh
+sbatch actor_01b.sh
 sbatch ripples-MPI_OOM.sh
 ############################

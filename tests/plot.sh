@@ -1,5 +1,6 @@
 ##########################
 python3 -m pip install -U matplotlib
+python3 -m pip install -U numpy
 
 a_datafiles=(soc-Epinions1 cit-HepPh com-dblp.ungraph com-youtube.ungraph)
 pes=(2 4 8 16)
