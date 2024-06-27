@@ -14,7 +14,7 @@ a_datafiles=(cit-HepPh soc-Epinions1)
 b_datafiles=(com-dblp.ungraph com-youtube.ungraph)
 pes=(2 4 8 16 32)
 
-export DATASET_PATH=~/scratch/imm-dataset
+export DATASET_PATH=~/scratch/imm_dataset
 
 if [ ! -d bin ]; then
     mkdir bin

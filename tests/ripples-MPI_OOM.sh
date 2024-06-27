@@ -15,7 +15,7 @@ cd $SLURM_SUBMIT_DIR
 b_datafiles=(com-orkut.ungraph)
 pes=(8 16 32)
 
-export DATASET_PATH=~/scratch/imm-dataset
+export DATASET_PATH=~/scratch/imm_dataset
 
 if [ ! -d bin ]; then
     mkdir bin
