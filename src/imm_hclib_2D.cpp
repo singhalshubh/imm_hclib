@@ -219,7 +219,11 @@ int main (int argc, char* argv[]) {
         #endif
         gettimeofday(&rr, NULL);
         timersub(&rr, &tt, &rr);
-        T0_fprintf(stderr, "%lf", rr.tv_sec + (double) rr.tv_usec/(double)1000000);
+        if(MYTHREAD == 0) {
+            FILE *fp = fopen(cfg->timefileName, "a");
+            fprintf(fp, "%lf", rr.tv_sec + (double) rr.tv_usec/(double)1000000);
+            fclose(fp);
+        }
         #ifdef DEBUG
             T0_fprintf(stderr, "Total Time(generateRR): %8.3lf seconds\n", generateRR_time.tv_sec + (double) generateRR_time.tv_usec/(double)1000000);
             T0_fprintf(stderr, "Total Time(selectseeds): %8.3lf seconds\n", selectSeeds_time.tv_sec + (double) selectSeeds_time.tv_usec/(double)1000000);

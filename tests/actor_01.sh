@@ -24,8 +24,8 @@ for df in ${a_datafiles[@]}
 do
     for pe in ${pes[@]}
     do
-        srun -n $(($pe*24)) ../src/imm_hclib_1D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -o $PWD/bin/1d-$df-$pe.txt &> $PWD/bin/inf-1d-$df-$pe.txt
-        srun -n $(($pe*24)) ../src/imm_hclib_2D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -o $PWD/bin/2d-$df-$pe.txt &> $PWD/bin/inf-2d-$df-$pe.txt
+        srun -n $(($pe*24)) ../src/imm_hclib_1D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -o $PWD/bin/1d-$df-$pe.txt -t $PWD/bin/inf-1d-$df-$pe.txt
+        srun -n $(($pe*24)) ../src/imm_hclib_2D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -o $PWD/bin/2d-$df-$pe.txt -t $PWD/bin/inf-2d-$df-$pe.txt
     done
 done
 
@@ -33,7 +33,7 @@ for df in ${b_datafiles[@]}
 do
     for pe in ${pes[@]}
     do
-        srun -n $(($pe*24)) ../src/imm_hclib_1D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -u -o $PWD/bin/1d-$df-$pe.txt &> $PWD/bin/inf-1d-$df-$pe.txt
-        srun -n $(($pe*24)) ../src/imm_hclib_2D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -u -o $PWD/bin/2d-$df-$pe.txt &> $PWD/bin/inf-2d-$df-$pe.txt
+        srun -n $(($pe*24)) ../src/imm_hclib_1D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -u -o $PWD/bin/1d-$df-$pe.txt -t $PWD/bin/inf-1d-$df-$pe.txt
+        srun -n $(($pe*24)) ../src/imm_hclib_2D -f $DATASET_PATH/$df-LT.txt -d LT -k 100 -e 0.13 -w -u -o $PWD/bin/2d-$df-$pe.txt -t $PWD/bin/inf-2d-$df-$pe.txt
     done
 done

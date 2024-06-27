@@ -10,6 +10,7 @@
 class CONFIGURATION {
     public:
         char fileName[200];
+        char timefileName[200];
         char outputfileName[200];
         char diffusion_model[200];
         double epsilon;
@@ -21,7 +22,7 @@ class CONFIGURATION {
         bool STATE;
         void GET_ARGS_FROM_CMD(int argc, char* argv[]) {
             int opt;
-            while( (opt = getopt(argc, argv, "huwf:e:k:o:d:")) != -1 ) {
+            while( (opt = getopt(argc, argv, "huwf:e:k:o:d:t:")) != -1 ) {
                 switch(opt) {
                     case 'h': fprintf(stderr, "[HELP]: imm-collective -f <filename> -e <epsilon> -k <#ofinfluencers> -o outputfilename -d <IC/LT> -u<1 for unweighted>, -w<1 for weighted>"); break;
                     case 'f': sscanf(optarg,"%s" , fileName); break;
@@ -32,6 +33,7 @@ class CONFIGURATION {
                                 if(std::strcmp(diffusion_model, "LT") == 0) type = LT;
                                 break;
                     case 'o': sscanf(optarg,"%s" , outputfileName); break;
+                    case 't': sscanf(optarg,"%s" , timefileName); break;
                     case 'u': undirected = true; break;
                     case 'w': weighted = true; break;
                     default:  break;
