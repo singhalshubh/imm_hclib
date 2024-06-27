@@ -1,4 +1,5 @@
 ##########################
+module load python
 python3 -m pip install -U matplotlib
 python3 -m pip install -U numpy
 
@@ -11,4 +12,4 @@ python3 interpret.py cit-HepPh 2
 python3 interpret.py soc-Epinions1 2
 python3 interpret.py com-dblp.ungraph 2
 python3 interpret.py com-youtube.ungraph 2
-rm -rf bin/ job.out
+#rm -rf bin/ job.out

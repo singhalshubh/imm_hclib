@@ -17,10 +17,6 @@ pes=(2 4 8 16 32)
 
 export DATASET_PATH=~/scratch/imm_dataset
 
-if [ ! -d bin ]; then
-    mkdir bin
-fi
-
 for df in ${b_datafiles[@]}
 do
     for pe in ${pes[@]}
