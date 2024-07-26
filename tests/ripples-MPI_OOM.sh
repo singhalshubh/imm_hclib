@@ -3,7 +3,7 @@
 #SBATCH -A gts-vsarkar9-forza
 #SBATCH -N32
 #SBATCH -c24
-#SBATCH -t60
+#SBATCH -t180
 #SBATCH -qinferno        
 #SBATCH -ojob.out
 
