@@ -31,17 +31,15 @@ def main():
 
     v_mpi = []
     for pe in pes:
-        if os.path.exists("./bin/inf-MPI-" + sys.argv[1] + "-" + str(pe) + ".json") == True:
         with open("./bin/inf-MPI-" + sys.argv[1] + "-" + str(pe) + ".json", "r") as file:
             jsonData = json.load(file)
             v_mpi.append(float(jsonData[0]["Total"]))
 
     v_mpiop = []
     for pe in pes:
-        if os.path.exists("./bin/inf-MPIOP-" + sys.argv[1] + "-" + str(pe) + ".json") == True:
-            with open("./bin/inf-MPIOP-" + sys.argv[1] + "-" + str(pe) + ".json", "r") as file:
-                jsonData = json.load(file)
-                v_mpiop.append(float(jsonData[0]["Total"]))
+        with open("./bin/inf-MPIOP-" + sys.argv[1] + "-" + str(pe) + ".json", "r") as file:
+            jsonData = json.load(file)
+            v_mpiop.append(float(jsonData[0]["Total"]))
 
     plt.plot(x, v_actor_1d, marker = 's', color='tab:orange', label='Actor IMM')
     plt.plot(x, v_actor_2d, marker = 'o', color='tab:blue', label='Actor IMM 2D')
