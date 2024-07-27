@@ -3,7 +3,7 @@
 #SBATCH -A gts-vsarkar9-forza
 #SBATCH -N32
 #SBATCH -c24
-#SBATCH -t180
+#SBATCH -t360
 #SBATCH --mem-per-cpu=12gb
 #SBATCH -qinferno        
 #SBATCH -ojob.out

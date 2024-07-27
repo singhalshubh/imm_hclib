@@ -3,7 +3,7 @@
 #SBATCH -A gts-vsarkar9-forza
 #SBATCH -N32
 #SBATCH --ntasks-per-node=24
-#SBATCH -t180
+#SBATCH -t360
 #SBATCH -qinferno        
 #SBATCH -ojob.out
 
