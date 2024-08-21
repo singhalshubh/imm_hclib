@@ -1,5 +1,6 @@
 # Influence Maximization (IM) Problem
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13308653.svg)](https://doi.org/10.5281/zenodo.13308653)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13308653.svg)](https://doi.org/10.5281/zenodo.13308653) [Accepted at SC'24]
+
 This repository consists of Influence Maximization Kernels for Asynchronous Distributed Run-Time.
 Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
 
