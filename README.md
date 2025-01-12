@@ -3,7 +3,7 @@
 
 > Shubhendra Pal Singhal, Souvadra Hati, Jeffrey Young, Vivek Sarkar, Akihiro Hayashi, and Richard Vuduc. 2024. Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. In Proceedings of the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC '24). IEEE Press, Article 102, 1–19. https://doi.org/10.1109/SC41406.2024.00108. Please cite us if you use our algorithms. https://dl.acm.org/doi/10.1109/SC41406.2024.00108.
 
-> Official DOI for citing our code: https://zenodo.org/badge/DOI/10.5281/zenodo.13308653.svg)](https://doi.org/10.5281/zenodo.13308653
+> Official DOI for citing our code: https://doi.org/10.5281/zenodo.13308653
 
 This repository consists of Influence Maximization Kernels for Asynchronous Distributed Run-Time.
 Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
