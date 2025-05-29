@@ -64,8 +64,8 @@ uint64_t PERFORM_IMM(GRAPH *g, std::vector<std::vector<VERTEX>> *RRsets,
     }
     select_time += wall_seconds() - t1;
 
-    T0_fprintf(stderr, "[Time until now] in matrixGen: %lf\n", adjust_time);
-    T0_fprintf(stderr, "[Time until now] in k loops: %lf\n", select_time);
+    T0_fprintf(stderr, "[Time until now] in matrixGen: %8.3lf seconds\n", adjust_time);
+    T0_fprintf(stderr, "[Time until now] in k loops: %8.3lf seconds\n", select_time);
     delete TAGS_COUNT;
     return max_coverage;
 }

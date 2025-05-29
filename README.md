@@ -127,21 +127,21 @@ Graph Info: Max-degree: 17
 STEP 1: Sampling
 Delta/PE: 1141
 [ESTIMATE]Time taken to generate RR sets in sampling:    0.001 seconds
-[Time until now] in matrixGen: 0.000222
-[Time until now] in k loops: 0.000022
+[Time until now] in matrixGen:    0.000 seconds
+[Time until now] in k loops:    0.000 seconds
 [ESTIMATE]Time taken to select seeds in sampling:    0.000 seconds
-Fraction covered: 0.700263
+Fraction covered: 0.683611
 
-ThetaFinal/PE: 1070
+ThetaFinal/PE: 1124
 final,STEP 2: Generate RR final
 Final, Time taken to generate RR sets:    0.001 seconds
 final, STEP 3: Select Seeds
-[Time until now] in matrixGen: 0.000418
-[Time until now] in k loops: 0.000036
+[Time until now] in matrixGen:    0.000 seconds
+[Time until now] in k loops:    0.000 seconds
 Final, Time taken to select seeds:    0.000 seconds
-Fraction covered: 0.706468
-#RRsets total/pe: 2211
-Total Time:    0.023 seconds
+Fraction covered: 0.683223
+#RRsets total/pe: 2265
+Total Time:    0.385 seconds
 Total Time(generateRR):    0.003 seconds
 Total Time(selectseeds):    0.000 seconds
 ```
