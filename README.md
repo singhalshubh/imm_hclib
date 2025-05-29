@@ -172,3 +172,4 @@ cd imm_hclib/
 srun -N 2 -n 48 ./src/lt_1D/production -f ./input_files/com-youtube.ungraph-LT.txt -u -w -o inf.txt -t time.txt -e 0.13 -c -k 100
 srun -N 2 -n 48 ./src/lt_2D/production_2D -f ./input_files/com-youtube.ungraph-LT.txt -u -w -o inf.txt -t time.txt -e 0.13 -c -k 100
 ```
+Note `Total Time:` for all experiments. Additionally, for replicating Figure 13 note `[Time until now] in matrixGen:` and `[Time until now] in k loops:`.
