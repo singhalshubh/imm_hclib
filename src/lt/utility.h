@@ -1,4 +1,12 @@
-#define PP std::pair<uint64_t, uint64_t>
+static const int64_t kRandSeed = 27491095;
+
+#define ASSERT_WITH_MESSAGE(condition, message)\
+   (!(condition)) ?\
+      (std::cerr << "Assertion failed: (" << #condition << "), "\
+      << "function " << __FUNCTION__\
+      << ", file " << __FILE__\
+      << ", line " << __LINE__ << "."\
+      << std::endl << message << std::endl, abort(), 0) : 1
 
 inline double logBinomial(size_t n, size_t k) {
   return n * log(n) - k * log(k) - (n - k) * log(n - k);
@@ -47,8 +55,8 @@ std::vector <std::string> split(std::string & line, char delim, uint64_t size = 
   return tokens;
 }
 
-bool less (const PP& lhs, const PP& rhs) { 
-  return lhs.first<rhs.first || ((rhs.first==lhs.first) && lhs.second<rhs.second); 
+inline bool less (const uint64_t& lhs, const uint64_t& rhs) { 
+  return lhs<rhs; 
 }
 
 template <class InputIterator1, class InputIterator2, class OutputIterator>
@@ -83,11 +91,29 @@ template <class InputIterator1, class InputIterator2>
   }
 }
 
+
+template <class InputIterator1, class InputIterator2>
+inline void set_COPY(InputIterator1 first1, InputIterator1 last1,
+                                 InputIterator2 *result, uint64_t offset)
+{
+  while (first1!=last1) {
+    result->insert(*first1 + (offset*THREADS));  
+    ++first1; 
+  }
+}
+
 void report(std::string error_msg) {
     fprintf(stderr, "%s\n", error_msg.c_str());
     exit(-1);
 }
 
-uint64_t pe(uint64_t node) {
-  return static_cast<uint64_t>(node % THREADS);
+uint64_t ROUND_TO_MULTIPLE(uint64_t data) {
+  while(1) {
+    if(THREADS%data == 0) {
+      return data;
+    }
+    else {
+      data--;
+    }
+  }
 }
