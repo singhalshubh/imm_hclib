@@ -31,160 +31,144 @@ https://doi.org/10.1016/j.jocs.2023.102014.
 
 # Directory Structure
 ```tree
-├── src/ (implementation of IMM Actor Algorithms) 
-│   ├── Makefile
-│   ├── configuration.h
-│   ├── generateRR.h
-│   ├── graph.h
-│   ├── imm_hclib_1D.cpp
-│   ├── imm_hclib_2D.cpp
-│   ├── renumbering.h
-│   ├── selectseeds.h
-│   ├── selectseeds_2D.h
-│   ├── utility.h
-├── scripts/ (contains setup scripts for different HPC machines)
-│   ├── AE_optional.sh (Optional for AE: contains reproduction of Figure 5,6 of SC 24 paper)
-│   ├── AE.sh (contains build of Ripples and Actor with sbatch scripts for Figure 5 of SC 24 paper).
-│   ├── setup.sh (Actor IMM setup)
-│   ├── ripples-setup.sh (Ripples setup)
-│   ├── ripples-conan.sh (Ripples config)
-├── tests/ (contains SLURM scripts for SC submission)
-│   ├── actor_01.sh
-│   ├── actor_02.sh
-│   ├── interpret.py 
-│   ├── ripples-MPI_1.sh
-│   ├── ripples-MPI_2.sh
-│   ├── ripples-MPIOP_1.sh
-│   └── ripples-MPIOP_2.sh
-│   └── ripples-MPI_OOM.sh
-│   ├── plot_optional.sh (Optional for AE: To reproduce Figure 5,6 from PACE outputs)
-│   ├── plot.sh (To reproduce Figure 5 from PACE outputs)
-└── README.md
+├── input_files
+│   ├── cit-HepPh-LT.txt
+│   ├── com-dblp.ungraph-LT.txt
+│   ├── com-youtube.ungraph-LT.txt
+│   ├── karate.txt
+│   └── soc-Epinions1-LT.txt
+├── README.md
+├── scripts
+│   ├── AE.sh
+│   └── setup.sh
+└── src
+    ├── lt
+    │   ├── configuration.h
+    │   ├── graph.h
+    │   ├── mapper.h
+    │   ├── user.h
+    │   └── utility.h
+    ├── lt_1D
+    │   ├── generateRR.h
+    │   ├── Makefile
+    │   ├── production.cpp
+    │   ├── profile.h
+    │   └── selectseeds.h
+    └── lt_2D
+        ├── generateRRR+.h
+        ├── Makefile
+        ├── production_2D.cpp
+        ├── profile.h
+        ├── selectseeds_2D.h
+        └── selectseedsIMM.h
+
+6 directories, 24 files
 ```
 
-# Prerequisite
-## HClib run-time system
-Please follow the instructions for Perlmutter for installing and loading all the dependencies of IMM Actor (this repo).
-Download this repository from the link provided and rename the folder to imm_hclib
+## Build imm_hclib package
+
+### Dataset 
+```bash
+cd imm_hclib/input_files/
+```
+`karate.txt` is the sample input graph which is used to test the correctness of installation. Rest are the SNAP real-world pre-processed graphs.
+
+### Instructions of installation
+
 ```bash
 cd imm_hclib/scripts/
 source setup.sh
 ```
-
-## Dataset 
-### General Instructions
-We recommend using scratch space for your dataset, although it is not a mandatory requisite. We support dataset in edge list format in space-separated format. Dataset should contain vertice labels in the range of [1..N].
-```bash
-salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
-srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i /<path-to-dataset>/<filename> -d LT --normalize -o /<path-to-dataset>/<filename>-LT.txt
-``` 
-
-> dump-graph.cc normalizes your dataset from random vertice labels to ordered [1..N] vertex labels. LT model is used to adjust/generate weights based on IMM [[Marco'19]] (https://ieeexplore.ieee.org/document/8890991) strategy same as [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769). Follow the instructions to build dump-graph.cc executable, available at [[ripples]](https://doi.org/10.5281/zenodo.4673587) in ``tools/``.
-
-### Showcasing an example
-#### STEP 1: Downloading the dataset - cit-HepPh graph 
-```bash
-cd $SCRATCH
-wget http://snap.stanford.edu/data/cit-HepPh.txt.gz 
-gzip -df cit-HepPh.txt.gz
-```
-#### Step 2: Follow the general instructions 
-```bash
-salloc --nodes 1 --qos interactive --time 0:30:00 --constraint cpu
-srun -n 1 --cpu-bind none $HOME/ripples/build/Release/tools/dump-graph -i $SCRATCH/cit-HepPh.txt -d LT --normalize -o $SCRATCH/cit-HepPh-LT.txt
-``` 
-
-#### Sample output for synthetic4x
-```
-[2024-04-12 07:37:56.982] [console] [info] Loading Done!
-[2024-04-12 07:37:56.983] [console] [info] Number of Nodes : 844400
-[2024-04-12 07:37:56.983] [console] [info] Number of Edges : 4245213
-[2024-04-12 07:37:56.983] [console] [info] Loading took 5047ms
-```
-# Build and Run workflow
-## Build
-```bash
-cd imm_hclib/src/
-make
-```
-You will see two executables named, `imm_hclib_1D` and `imm_hclib_2D`.
+This script installs the `HClib-Actor` and `trng4` library. You will see two executables named, `production` and `production_2D`.
 > Make sure your terminal session has followed the pre-requisite, in case you run into any library [NOT FOUND] errors.
 
-## Run 
-Run the executables, `imm_hclib_1D` and `imm_hclib_2D`.
-```bash
-salloc --nodes <> --qos regular --time 0:30:00 --constraint cpu
-srun -n <> -c 1 ./imm_hclib_1D -f /<path-to-dataset>/<filename> -d LT -k <> -e <> -o <>
-srun -n <> -c 1 ./imm_hclib_2D -f /<path-to-dataset>/<filename> -d LT -k <> -e <> -o <>
+To test whether the installation is done right, please run these two commands from `imm_hclib`. Note that you will see the sample output with `inf.txt` containing 4 influencers for each run.
+
+`srun -N 1 -n 2 ./src/lt_1D/production -f ./input_files/karate.txt -w -o inf.txt -t time.txt -e 0.13 -c -k 4`
+
 ```
-`salloc` and `srun` options for running imm_hclib_1D and imm_hclib_2D:
-- `nodes` for the number of nodes you desire to run our program on.
-- `n` for the total number of cores
-> e.g. on Perlmutter, `n = 128 * nodes`
-  
-mandatory flags for running imm_hclib_1D and imm_hclib_2D:
-- `f` for input dataset file name
-- `d` LT
+Application: IMM (Only for LT), Number of influencers: 4, epsilon = 0.130000, output file: inf.txt, Is un-directed: 0, Is-weighted: 1, scale: -1, degree: -1, file: ./input_files/karate.txt
+
+Cyclic Mapping
+Total Number of Nodes in G: 34
+Reading the graph file
+Adjusting weights
+Total Number of Edges in G: 78
+Graph Info: AVG-degree: 2
+Graph Info: Max-degree: 17
+STEP 1: Sampling
+Delta/PE: 1141
+[ESTIMATE]Time taken to generate RR sets in sampling:   0.001 seconds
+[ESTIMATE]Time taken to select seeds in sampling:    0.001 seconds
+Fraction covered: 0.695004
+
+ThetaFinal/PE: 1087
+final,STEP 2: Generate RR final
+Time taken to select generate RRR sets:    0.001 seconds
+final,STEP 3: Select Seeds
+Time taken to select seeds:    0.002 seconds
+Total Time:    0.006 seconds
+Total Time(generateRR):    0.002 seconds
+Total Time(selectseeds):    0.003 seconds
+```
+
+`srun -N 1 -n 2 ./src/lt_2D/production_2D -f ./input_files/karate.txt -w -o inf.txt -t time.txt -e 0.13 -c -k 4`
+
+```
+Application: IMM (Only for LT), Number of influencers: 4, epsilon = 0.130000, output file: inf.txt, Is un-directed: 0, Is-weighted: 1, scale: -1, degree: -1, file: ./input_files/karate.txt
+
+Cyclic Mapping
+Total Number of Nodes in G: 34
+Reading the graph file
+Adjusting weights
+Total Number of Edges in G: 78
+Graph Info: AVG-degree: 2
+Graph Info: Max-degree: 17
+STEP 1: Sampling
+Delta/PE: 1141
+[ESTIMATE]Time taken to generate RR sets in sampling:    0.001 seconds
+[Time until now] in matrixGen: 0.000222
+[Time until now] in k loops: 0.000022
+[ESTIMATE]Time taken to select seeds in sampling:    0.000 seconds
+Fraction covered: 0.700263
+
+ThetaFinal/PE: 1070
+final,STEP 2: Generate RR final
+Final, Time taken to generate RR sets:    0.001 seconds
+final, STEP 3: Select Seeds
+[Time until now] in matrixGen: 0.000418
+[Time until now] in k loops: 0.000036
+Final, Time taken to select seeds:    0.000 seconds
+Fraction covered: 0.706468
+#RRsets total/pe: 2211
+Total Time:    0.023 seconds
+Total Time(generateRR):    0.003 seconds
+Total Time(selectseeds):    0.000 seconds
+```
+
+## Run the program
+Run the executables, `production` and `production_2D`.
+```bash
+srun -N <> -n <> ./src/lt_1D/production -f /<path-to-dataset>/<filename> -c -k <> -e <> -o <> -t <>
+srun -N <> -n <> ./src/lt_2D/production_2D -f /<path-to-dataset>/<filename> -c -k <> -e <> -o <> -t <>
+```
+
+For `srun` flags, `N` refers to total number of nodes, and `n` refers to total number of cores in the system.
+Mandatory flags for running imm_hclib_1D and imm_hclib_2D:
+- `f` for input dataset file name and path (use full system path to avoid any errors)
+- `t` for output file which stores total time taken by program
+- `c` for cyclic distribution
 - `k` for the number of influencers
 - `e` for value of epsilon
 - `o` for output file name, which stores IDs of vertices that were selected as *influencers*
-  
-optional flags, for supporting different kinds of datasets:
-- `u` for undirected graph and, 
-- `w` for weighted graph
-  
-### Showcasing an example, for 100 influencers, &epsilon; = 0.2 for 2 nodes of Perlmutter
-Once you `make` and generate two executables `imm_hclib_1D` and `imm_hclib_2D`, this section shows how to run IMM Actor for `cit-HepPh-LT.txt` dataset.  
-```bash
-salloc -N 2 --qos regular --time 0:30:00 --constraint cpu
-srun -n 256 ./imm_hclib_1D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers1D-citHepPh.txt
-srun -n 256 ./imm_hclib_2D -f $SCRATCH/cit-HepPh-LT.txt -d LT -k 100 -e 0.2 -o influencers2D-citHepPh.txt
+- `w` for weighted graph and,
+- `u` for undirected graph
+
+### Helper commands for reproducing figures of paper
+Showcasing the example of how to run `com-youtube.ungraph-LT.txt` for k = 100, e = 0.13 and varying cores on x-axis. Suppose you have `24` cores per node, then for running on 2 nodes,
+
 ```
-You can see the execution prints of the program on your terminal screen. Influencer IDs are stored in two files, `influencers1D-citHepPh.txt` for IMM Actor and `influencers2D-citHepPh.txt` for IMM Actor 2D.
-
-### Sample output
-Please do not compare analytical variable values printed, as they will differ greatly even with the slightest change in configuration or system.
-```
-Application: IMM, Filename: /storage/scratch1/8/ssinghal74/imm-dataset/cit-HepPh-LT.txt, number of influencers: 100, epsilon = 0.130000, output file: inf-2D_1.txt, Model: LT, Is un-directed: 0, Is weighted: 1
-
-Total Number of Nodes in G: 34546
-Total Number of Edges in G: 421578
-STEP 1: Sampling
-Delta/PE: 229
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.009 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.043 seconds
-Fraction covered: 0.015250
-Delta/PE: 228
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.010 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.035 seconds
-Fraction covered: 0.012913
-Delta/PE: 457
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.010 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.037 seconds
-Fraction covered: 0.011254
-Delta/PE: 913
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.010 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.053 seconds
-Fraction covered: 0.009981
-Delta/PE: 1827
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.012 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.092 seconds
-Fraction covered: 0.009509
-Delta/PE: 3654
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.016 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.173 seconds
-Fraction covered: 0.009094
-Delta/PE: 7308
-[ESTIMATE]Time taken to generate RR sets in sampling:   0.021 seconds
-[ESTIMATE]Time taken to select seeds in sampling:    0.404 seconds
-Fraction covered: 0.008949
-
-ThetaFinal/PE: 7239
-final,STEP 2: Generate RR final
-Time taken to select generate RRR sets:    0.024 seconds
-final,STEP 3: Select Seeds
-Time taken to select seeds:    0.657 seconds
-Total Time:    1.606 seconds
-Total Time(generateRR):    0.112 seconds
-Total Time(selectseeds):    1.494 seconds
+cd imm_hclib/
+srun -N 2 -n 48 ./src/lt_1D/production -f ./input_files/com-youtube.ungraph-LT.txt -u -w -o inf.txt -t time.txt -e 0.13 -c -k 100
+srun -N 2 -n 48 ./src/lt_2D/production_2D -f ./input_files/com-youtube.ungraph-LT.txt -u -w -o inf.txt -t time.txt -e 0.13 -c -k 100
 ```
