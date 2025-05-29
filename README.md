@@ -6,7 +6,7 @@
 > Official DOI for citing our code: https://doi.org/10.5281/zenodo.13308653
 
 This repository consists of Influence Maximization Kernels for Asynchronous Distributed Run-Time.
-Two Workloads - imm_hclib_1D (Actor IMM) and imm_hclib_2D (Actor IMM 2D).
+Two Workloads - lt_1D (Actor IMM) and lt_2D (Actor IMM 2D).
 
 ## References
 [[Kempe'03]](https://dl.acm.org/doi/10.1145/956750.956769) Kempe, D., Kleinberg, J., & Tardos, É. (2003, August). Maximizing the
@@ -154,7 +154,7 @@ srun -N <> -n <> ./src/lt_2D/production_2D -f /<path-to-dataset>/<filename> -c -
 ```
 
 For `srun` flags, `N` refers to total number of nodes, and `n` refers to total number of cores in the system.
-Mandatory flags for running imm_hclib_1D and imm_hclib_2D:
+Mandatory flags for running production and production_2D:
 - `f` for input dataset file name and path (use full system path to avoid any errors)
 - `t` for output file which stores total time taken by program
 - `c` for cyclic distribution
