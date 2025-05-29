@@ -3,7 +3,7 @@ export LOC=$PWD
 echo -e 'Cloning IMM-Actor Algorithms'
 git clone https://github.com/singhalshubh/imm_hclib
 cd imm_hclib/
-git checkout sc25
+git checkout sc25-scc
 echo -e 'Building IMM-Actor Algorithms'
 source scripts/setup.sh
 cd src/
