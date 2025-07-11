@@ -173,3 +173,6 @@ srun -N 2 -n 48 ./src/lt_1D/production -f ./input_files/com-youtube.ungraph-LT.t
 srun -N 2 -n 48 ./src/lt_2D/production_2D -f ./input_files/com-youtube.ungraph-LT.txt -u -w -o inf.txt -t time.txt -e 0.13 -c -k 100
 ```
 Note `Total Time:` for all experiments. Additionally, for replicating Figure 13 note the **last occurence** of `[Time until now] in matrixGen:` and `[Time until now] in k loops:`. These times are added after every iteration.
+
+### Fun activity
+Download the `dblp_v17.tar.gz` provided Google Drive Link: https://drive.google.com/drive/folders/1nmYay3i-azr07vFWbNHtJvrjCNwm6mT3 and `tar -xvzf dblp_v17.tar.gz` will generate `dblp_v17.txt`. Please refer to guidelines for more details. This is a directed, weighted citation graph.
