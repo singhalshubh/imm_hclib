@@ -76,7 +76,7 @@ cd imm_hclib/input_files/
 ### Instructions of installation
 
 ```bash
-wget https://raw.githubusercontent.com/singhalshubh/imm_hclib/refs/heads/sc25/scripts/AE.sh
+wget https://raw.githubusercontent.com/singhalshubh/imm_hclib/refs/heads/sc25-scc/scripts/AE.sh
 source AE.sh
 ```
 This script installs the `HClib-Actor` and `trng4` library. You will see two executables named, `production` and `production_2D`.
